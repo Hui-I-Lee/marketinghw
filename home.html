@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        .image-container {
+            margin: 10px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        #countdown {
+            font-size: 30px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Promote Sales</h1>
+        <p>current prices: <span id="current-bid1">$800</span></p>
+        <!--<p>Plan A current prices: $?</p>-->
+        <label for="bidAmount1">Bid Amount:</label>
+        <input type="number" id="bidAmount1" class="bid-input" min="1" step="1">
+        <button onclick="placeBid1()">bid</button>
+        <h2>countdown</h2>
+        <div id="countdown">30</div>
+        <h2><img src="/Users/huiilee/Desktop/program/1_1.png"></h2>
+        <br />
+        <br />
+        <p>Plan B current prices: $?</p>
+        <label for="bidAmount2">Bid Amount:</label>
+        <input type="number" id="bidAmount2" class="bid-input" min="1" step="1">
+        <button onclick="placeBid2()">bid</button>
+        <h2><img src="/Users/huiilee/Desktop/program/2_1.png"></h2>
+        <br />
+        <br />
+        <h2><img src="/Users/huiilee/Desktop/program/3.png"></h2>
+        <br />
+        <br />
+        <h2><img src="/Users/huiilee/Desktop/program/4.png"></h2>
+    </div>
+
+    <div>
+        <h2><a href="implement.html"><button>Back</button></a></h2>
+    </div>
+
+    <script>
+        let currentBid1 = 800;
+        let currentBid2 = 500;
+
+        function placeBid1() {
+            const bidInput = document.getElementById('bidAmount1');
+            const bidAmount = parseInt(bidInput.value);
+
+            if (bidAmount > currentBid1) {
+                var tmp = currentBid1;
+                currentBid1 = bidAmount;
+                document.getElementById('current-bid1').innerText = '$' + currentBid1;
+                alert('Bid success! ' + currentBid1 + ' is the higest price');
+                window.location.href = 'payment.html';
+            } else {
+                alert('Bid failed! The highest price is 800');
+                //<a href="javascript:history.go(-1)">Back</a>
+                document.getElementById('current-bid1').innerText = '$' + currentBid1;
+                window.location.href = 'home.html';
+            }
+
+            bidInput.value = ''; // 清空輸入框
+        }
+        function placeBid2() {
+            const bidInput = document.getElementById('bidAmount2');
+            const bidAmount = parseInt(bidInput.value);
+
+            if (bidAmount > currentBid2) {
+                var tmp = currentBid2;
+                currentBid2 = bidAmount;
+                //document.getElementById('current-bid1').innerText = '$' + currentBid;
+                alert('Bid success! ' + currentBid2 + ' is the higest price');
+                window.location.href = 'payment.html'
+            } else {
+                alert('Bid failed! The highest price is 500');
+                window.location.href = 'home.html'
+            }
+
+            bidInput.value = ''; // 清空輸入框
+        }
+        let seconds = 10;
+
+        function updateCountdown() {
+            const countdownElement = document.getElementById('countdown');
+            countdownElement.innerText = seconds;
+
+            if (seconds === 0) {
+                alert('time up');
+                //<a href="javascript:history.go(-1)">Back</a>
+            } else {
+                seconds--;
+                setTimeout(updateCountdown, 1000); // 每秒更新一次
+            }
+        }
+
+        // 啟動倒數計時
+        updateCountdown();
+
+    </script>
+</body>
+
+</html>

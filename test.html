@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 100px;
+        }
+        form {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: 1px solid #000;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header><h2>Welcome to access Airbnb</h2></header>
+    <br />
+    <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <!--<a href="implement.html"><button type="button" onclick="login()">Login</button></a>-->
+        <input type="button" value="Login" onclick=javascript:login()></input>
+        <input type="button" value="sign up" onclick=javascript:signup()></input>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        function login() {
+            // 取得使用者輸入的帳號和密碼
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            // 在這裡可以進行後續的身份驗證操作，這裡只是一個簡單的演示
+            if (username === "HUII" && password === "LEE") {
+                // 登入成功的處理
+                document.getElementById("result").innerHTML = "<p>Login successful!</p>";
+                window.location.href = '/Users/huiilee/Desktop/program/implement.html';
+            } else {
+                // 登入失敗的處理
+                document.getElementById("result").innerHTML = "<p>Login failed. Please check your credentials.</p>";
+            }
+        }
+        function signup() {
+            window.location.href = '/Users/huiilee/Desktop/program/signup.html';
+        }
+    </script>
+
+</body>
+</html>
